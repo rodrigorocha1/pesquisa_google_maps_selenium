@@ -9,7 +9,7 @@ class IWebScrapingGoogleMaps(ABC):
         pass
 
     @abstractmethod
-    def digitar_dados(self, navegador: WebDriver):
+    def digitar_dados(self, navegador: WebDriver, assunto: str):
         pass
 
     @abstractmethod
