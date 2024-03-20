@@ -1,0 +1,8 @@
+1- Abrir no navegador
+2 - Abrir o site https://www.google.com
+3 - Escrever o termo de pesquisa -> lojas de roupa ribeirão preto
+4- Clicar pesquisar google
+5 - clicar mais lugares
+
+
+//*[@id="tsuid_23"]/div[2]/div[2]/div/a[1]/div/div/div[3]
