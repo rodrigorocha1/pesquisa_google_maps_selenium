@@ -31,16 +31,16 @@ class WebScrapingPipeline():
                 self.__amarzem.atualizar_dados(dados=dados)
             flag = self.__servico.executar_paginacao(navegador=navegador)
             sleep(4)
-            i += 1
-            if i == 4:
-                break
+            # i += 1
+            # if i == 4:
+            #     break
         self.__servico.fechar_navegador(navegador=navegador)
 
 
 if __name__ == '__main__':
     wsp = WebScrapingPipeline(
         armazem=ArmazemExcel(
-            nome_aba='anuncio Pizzaria',
+            nome_aba='escolas',
             nome_arquivo='anuncio.xlsx'
         ),
         servico=WebScrapingSeleniun(
@@ -48,4 +48,4 @@ if __name__ == '__main__':
 
         )
     )
-    wsp.rodar_servico(assunto='Loja de Roupas em Ribeirão Preto')
+    wsp.rodar_servico(assunto='Escolas em Ribeirão Preto')
