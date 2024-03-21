@@ -22,11 +22,11 @@ class Email(IServicoEmail):
         self.__nome_arquivo = nome_arquivo
         self.__assunto = assunto
 
-    def __anexar_arquivo(self, nome_arquivo: str):
-        with open(os.path.join(self.__caminho_base, 'data', 'raw', nome_arquivo), 'rb') as arquivo_axexo:
+    def __anexar_arquivo(self):
+        with open(os.path.join(self.__caminho_base, 'data', 'raw', self.__nome_arquivo), 'rb') as arquivo_axexo:
             anexo = MIMEApplication(arquivo_axexo.read(), _subtype='xlsx')
             anexo.add_header('content-disposition', 'attachment',
-                             filename=nome_arquivo)
+                             filename=self.__nome_arquivo)
         self.__msg.attach(anexo)
 
     def enviar_email(self):

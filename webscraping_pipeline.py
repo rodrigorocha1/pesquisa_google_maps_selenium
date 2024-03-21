@@ -34,9 +34,9 @@ class WebScrapingPipeline():
                 self.__amarzem.atualizar_dados(dados=dados)
             flag = self.__servico.executar_paginacao(navegador=navegador)
             sleep(4)
-            # i += 1
-            # if i == 4:
-            #     break
+            i += 1
+            if i == 4:
+                break
         self.__servico.fechar_navegador(navegador=navegador)
         self.__email.enviar_email()
 
@@ -50,6 +50,11 @@ if __name__ == '__main__':
         servico=WebScrapingSeleniun(
             url='https://www.google.com/',
 
+        ),
+        email=Email(
+            assunto='Envio das Escolas',
+            destinatario='silva.rodrigo31@gmail.com',
+            nome_arquivo='anuncio.xlsx'
         )
     )
     wsp.rodar_servico(assunto='Escolas em Ribeirão Preto')
