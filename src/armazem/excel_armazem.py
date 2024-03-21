@@ -22,7 +22,7 @@ class ArmazemExcel(OperacaoArquivo):
 
         return cabecalhos
 
-    def salvar_dados(self, dados: List[Dict[str, Union[str, int]]]):
+    def salvar_dados(self, dados: List[Dict[str, str]]):
         aba = self.__planilha.active
         aba.title = self.__nome_aba
 
@@ -34,7 +34,7 @@ class ArmazemExcel(OperacaoArquivo):
         self.__planilha.save(self._caminho_arquivo)
         self.__planilha.close()
 
-    def atualizar_dados(self, dados: List[Dict[str, Union[str, int]]]):
+    def atualizar_dados(self, dados: List[Dict[str, str]]):
         workbook = load_workbook(self._caminho_arquivo)
         if self.__nome_aba not in workbook.sheetnames:
             planilha = workbook.create_sheet(self.__nome_aba)

@@ -7,6 +7,8 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from typing import List, Dict
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class WebScrapingSeleniun(IWebScrapingGoogleMaps):
@@ -17,6 +19,7 @@ class WebScrapingSeleniun(IWebScrapingGoogleMaps):
 
     def abrir_navegador(self) -> WebDriver:
         navegador = webdriver.Chrome(service=self.__servico)
+        navegador.get(self.__url)
         navegador.maximize_window()
         return navegador
 
@@ -26,7 +29,6 @@ class WebScrapingSeleniun(IWebScrapingGoogleMaps):
         barra_busca.send_keys(Keys.ENTER)
 
     def percorrer_site(self, navegador: WebDriver):
-        navegador.find_element(By.CLASS_NAME, 'jRKCUd').click()
         navegador.find_element(By.CLASS_NAME, 'pYouzb').click()
 
     def extrair_informacao(self, navegador: WebDriver) -> List[Dict[str, str]]:
@@ -43,7 +45,8 @@ class WebScrapingSeleniun(IWebScrapingGoogleMaps):
 
     def executar_paginacao(self, navegador: WebDriver) -> bool:
         try:
-            navegador.find_element(By.ID, 'pnnext').click()
+            WebDriverWait(navegador, 10).until(EC.element_to_be_clickable(
+                (By.ID, 'pnnext'))).click()
             return True
         except NoSuchElementException:
             return False
