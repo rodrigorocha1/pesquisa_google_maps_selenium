@@ -12,7 +12,7 @@ from src.servico.servico_email.iservico_email import IServicoEmail
 load_dotenv()
 
 
-class Email(IServicoEmail):
+class ServicoEmailGmail(IServicoEmail):
     def __init__(self, destinatario: str, nome_arquivo: str = None, assunto: str = None) -> None:
         self.__rementente = os.environ['from']
         self.__destinatario = destinatario

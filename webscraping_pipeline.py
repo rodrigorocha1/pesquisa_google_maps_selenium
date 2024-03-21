@@ -4,13 +4,13 @@ from src.armazem.operacoes_arquivo import OperacaoArquivo
 from src.servico.webscraping_selenium import WebScrapingSeleniun
 from src.servico.iwebscraping_google_maps import IWebScrapingGoogleMaps
 from src.servico.servico_email.iservico_email import IServicoEmail
-from src.servico.servico_email.enviar_email import Email
+from servico.servico_email.servico_email_gmail import ServicoEmailGmail
 from time import sleep
 
 
 class WebScrapingPipeline():
 
-    def __init__(self, armazem: Iarmazem | OperacaoArquivo, servico: IWebScrapingGoogleMaps, email: Email) -> None:
+    def __init__(self, armazem: Iarmazem | OperacaoArquivo, servico: IWebScrapingGoogleMaps, email: IServicoEmail) -> None:
         self.__amarzem = armazem
         self.__servico = servico
         self.__email = email
@@ -51,7 +51,7 @@ if __name__ == '__main__':
             url='https://www.google.com/',
 
         ),
-        email=Email(
+        email=ServicoEmailGmail(
             assunto='Envio das Escolas',
             destinatario='silva.rodrigo31@gmail.com',
             nome_arquivo='anuncio.xlsx'

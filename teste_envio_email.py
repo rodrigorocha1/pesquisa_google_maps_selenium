@@ -1,4 +1,4 @@
-from servico.servico_email.enviar_email import Email
+from servico.servico_email.servico_email_gmail import Email
 
 
 email = Email(destinatario='silva.rodrigo31@gmail.com',
