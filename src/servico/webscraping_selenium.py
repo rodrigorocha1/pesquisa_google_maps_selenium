@@ -6,7 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from typing import List, Dict
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -49,6 +49,8 @@ class WebScrapingSeleniun(IWebScrapingGoogleMaps):
                 (By.ID, 'pnnext'))).click()
             return True
         except NoSuchElementException:
+            return False
+        except TimeoutException:
             return False
 
     def fechar_navegador(self, navegador: WebDriver):

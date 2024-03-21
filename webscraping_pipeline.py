@@ -48,4 +48,4 @@ if __name__ == '__main__':
 
         )
     )
-    wsp.rodar_servico(assunto='Pizzaria em Ribeirão Preto')
+    wsp.rodar_servico(assunto='Loja de Roupas em Ribeirão Preto')
