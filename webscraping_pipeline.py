@@ -3,14 +3,17 @@ from src.armazem.iarmazem import Iarmazem
 from src.armazem.operacoes_arquivo import OperacaoArquivo
 from src.servico.webscraping_selenium import WebScrapingSeleniun
 from src.servico.iwebscraping_google_maps import IWebScrapingGoogleMaps
+from src.servico.servico_email.iservico_email import IServicoEmail
+from src.servico.servico_email.enviar_email import Email
 from time import sleep
 
 
 class WebScrapingPipeline():
 
-    def __init__(self, armazem: Iarmazem | OperacaoArquivo, servico: IWebScrapingGoogleMaps) -> None:
+    def __init__(self, armazem: Iarmazem | OperacaoArquivo, servico: IWebScrapingGoogleMaps, email: Email) -> None:
         self.__amarzem = armazem
         self.__servico = servico
+        self.__email = email
 
     def rodar_servico(self, assunto: str):
         navegador = self.__servico.abrir_navegador()
@@ -35,6 +38,7 @@ class WebScrapingPipeline():
             # if i == 4:
             #     break
         self.__servico.fechar_navegador(navegador=navegador)
+        self.__email.enviar_email()
 
 
 if __name__ == '__main__':

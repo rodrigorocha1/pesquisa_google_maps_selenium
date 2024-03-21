@@ -13,13 +13,14 @@ load_dotenv()
 
 
 class Email(IServicoEmail):
-    def __init__(self, destinatario: str, nome_arquivo: str = None) -> None:
+    def __init__(self, destinatario: str, nome_arquivo: str = None, assunto: str = None) -> None:
         self.__rementente = os.environ['from']
         self.__destinatario = destinatario
         self.__msg = MIMEMultipart()
         self.__senha = os.environ['senha']
         self.__caminho_base = os.getcwd()
         self.__nome_arquivo = nome_arquivo
+        self.__assunto = assunto
 
     def __anexar_arquivo(self, nome_arquivo: str):
         with open(os.path.join(self.__caminho_base, 'data', 'raw', nome_arquivo), 'rb') as arquivo_axexo:
@@ -28,19 +29,19 @@ class Email(IServicoEmail):
                              filename=nome_arquivo)
         self.__msg.attach(anexo)
 
-    def enviar_email(self, assunto: str):
+    def enviar_email(self):
         corpo_email = """
         <p>Parágrafo1</p>
         <p>Parágrafo2</p>
         """
 
-        self.__msg['Subject'] = assunto
+        self.__msg['Subject'] = self.__assunto
         self.__msg['From'] = self.__rementente
         self.__msg['To'] = self.__destinatario
 
         corpo = MIMEText(corpo_email, 'html')
         self.__msg.attach(corpo)
-        self.__anexar_arquivo(nome_arquivo=self.__nome_arquivo)
+        self.__anexar_arquivo()
         s = smtplib.SMTP('smtp.gmail.com: 587')
         s.starttls()
 
