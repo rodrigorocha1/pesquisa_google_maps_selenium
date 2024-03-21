@@ -1,11 +1,11 @@
+from time import sleep
 from src.armazem.excel_armazem import ArmazemExcel
 from src.armazem.iarmazem import Iarmazem
 from src.armazem.operacoes_arquivo import OperacaoArquivo
 from src.servico.webscraping_selenium import WebScrapingSeleniun
 from src.servico.iwebscraping_google_maps import IWebScrapingGoogleMaps
 from src.servico.servico_email.iservico_email import IServicoEmail
-from servico.servico_email.servico_email_gmail import ServicoEmailGmail
-from time import sleep
+from src.servico.servico_email.servico_email_gmail import ServicoEmailGmail
 
 
 class WebScrapingPipeline():
@@ -58,3 +58,4 @@ if __name__ == '__main__':
         )
     )
     wsp.rodar_servico(assunto='Escolas em Ribeirão Preto')
+    
