@@ -1,3 +1,6 @@
 /venv
 __pycache__
 data/raw/anuncio.xlsx
+.env
+te
+Enviar e-mail pelo Gmail - smtplib.zip
