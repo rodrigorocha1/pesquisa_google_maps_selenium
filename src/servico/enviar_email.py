@@ -7,10 +7,12 @@ from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
+from src.servico.servico_email.iservico_email import IServicoEmail
+
 load_dotenv()
 
 
-class Email:
+class Email(IServicoEmail):
     def __init__(self, destinatario: str, nome_arquivo: str = None) -> None:
         self.__rementente = os.environ['from']
         self.__destinatario = destinatario
