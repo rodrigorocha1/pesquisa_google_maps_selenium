@@ -11,6 +11,7 @@ from src.servico.servico_email.servico_email_gmail import ServicoEmailGmail
 class WebScrapingPipeline():
 
     def __init__(self, armazem: Iarmazem | OperacaoArquivo, servico: IWebScrapingGoogleMaps, email: IServicoEmail) -> None:
+
         self.__amarzem = armazem
         self.__servico = servico
         self.__email = email
@@ -58,4 +59,3 @@ if __name__ == '__main__':
         )
     )
     wsp.rodar_servico(assunto='Escolas em Ribeirão Preto')
-    
